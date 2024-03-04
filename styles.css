@@ -1,1 +1,75 @@
 /* Your CSS Code here. */
+/* Reset default styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+}
+
+.wrapper {
+  width: 800px;
+  margin: 20px auto;
+  position: relative;
+}
+
+.flex {
+  width: 100%;
+}
+
+.toggle {
+  background-color: transparent;
+  border: none;
+  color: #333;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.player__slider {
+  width: 100px;
+  margin: 0 10px;
+}
+
+.skip-back,
+.skip-forward {
+  background-color: #333;
+  border: none;
+  color: #fff;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin: 0 5px;
+}
+
+.progress {
+  background-color: #ddd;
+  height: 10px;
+  width: 100%;
+  position: relative;
+  margin-top: 10px;
+}
+
+.progress__filled {
+  background-color: #ff0000;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.speed {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.speed-bar {
+  background-color: #333;
+  color: #fff;
+  padding: 5px 10px;
+  cursor: pointer;
+}
