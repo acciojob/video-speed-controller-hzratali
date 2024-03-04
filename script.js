@@ -1,14 +1,21 @@
-// Get the required elements from the DOM
-const player = document.querySelector('.player');
-const video = player.querySelector('.viewer');
-const progress = player.querySelector('.progress');
-const progressBar = player.querySelector('.progress__filled');
-const toggle = player.querySelector('.toggle');
-const volumeRange = player.querySelector('.player__slider[name="volume"]');
-const playbackSpeedRange = player.querySelector('.player__slider[name="playbackRate"]');
-const skipButtons = player.querySelectorAll('[data-skip]');
+const inputs = document.querySelectorAll('.controls input');
 
-// Function to toggle play/pause
+    function handleUpdate() {
+      const suffix = this.dataset.sizing || '';
+      document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
+    }
+
+    inputs.forEach(input => input.addEventListener('change', handleUpdate));
+    inputs.forEach(input => input.addEventListener('mousemove', handleUpdate));
+
+const video = document.querySelector('.flex');
+const speedBar = document.querySelector('.speed-bar');
+const skipButtons = document.querySelectorAll('.skip');
+const volumeSlider = document.querySelector('[name="volume"]');
+const playbackSpeedSlider = document.querySelector('[name="playbackSpeed"]');
+const progressBar = document.querySelector('.progress__filled');
+const toggleButton = document.querySelector('.player__button');
+
 function togglePlay() {
   if (video.paused) {
     video.play();
@@ -17,47 +24,45 @@ function togglePlay() {
   }
 }
 
-// Function to update the play/pause button
 function updateButton() {
   const icon = video.paused ? '►' : '❚ ❚';
-  toggle.textContent = icon;
+  toggleButton.textContent = icon;
 }
 
-// Function to handle skipping forward or backward
 function skip() {
-  const skipAmount = parseFloat(this.dataset.skip);
-  video.currentTime += skipAmount;
+  video.currentTime += parseFloat(this.dataset.skip);
 }
 
-// Function to handle volume and playback speed changes
-function handleRangeUpdate() {
-  video[this.name] = this.value;
+function handleVolumeChange() {
+  video.volume = volumeSlider.value;
 }
 
-// Function to update the progress bar
-function updateProgress() {
-  const percent = (video.currentTime / video.duration) * 100;
-  progressBar.style.flexBasis = `${percent}%`;
+function handlePlaybackSpeedChange() {
+  video.playbackRate = playbackSpeedSlider.value;
 }
 
-// Function to handle seeking through the video
+function handleProgress() {
+  const progress = (video.currentTime / video.duration) * 100;
+  progressBar.style.flexBasis = `${progress}%`;
+}
+
 function scrub(e) {
   const scrubTime = (e.offsetX / progress.offsetWidth) * video.duration;
   video.currentTime = scrubTime;
 }
 
-// Add event listeners to the video player elements
+toggleButton.addEventListener('click', togglePlay);
 video.addEventListener('click', togglePlay);
-toggle.addEventListener('click', togglePlay);
 video.addEventListener('play', updateButton);
 video.addEventListener('pause', updateButton);
-video.addEventListener('timeupdate', updateProgress);
+video.addEventListener('timeupdate', handleProgress);
+
 skipButtons.forEach(button => button.addEventListener('click', skip));
-volumeRange.addEventListener('input', handleRangeUpdate);
-playbackSpeedRange.addEventListener('input', handleRangeUpdate);
+volumeSlider.addEventListener('input', handleVolumeChange);
+playbackSpeedSlider.addEventListener('input', handlePlaybackSpeedChange);
 
 let mousedown = false;
-progress.addEventListener('click', scrub);
-progress.addEventListener('mousemove', (e) => mousedown && scrub(e));
-progress.addEventListener('mousedown', () => mousedown = true);
-progress.addEventListener('mouseup', () => mousedown = false);
+progressBar.parentElement.addEventListener('click', scrub);
+progressBar.parentElement.addEventListener('mousemove', (e) => mousedown && scrub(e));
+progressBar.parentElement.addEventListener('mousedown', () => mousedown = true);
+progressBar.parentElement.addEventListener('mouseup', () => mousedown = false);
