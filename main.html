@@ -6,14 +6,18 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
   <div class="wrapper">
-    <video class="flex" width="765" height="430" src="http://clips.vorwaerts-gmbh.de/VfE_html5.mp4" controls></video>
+    <video id="myVideo" class="flex" width="765" height="430" controls>
+		<source src="http://clips.vorwaerts-gmbh.de/VfE_html5.mp4" type="video/mp4">
+	</video>
+	<div>
+		<button id="playButton">Play</button>
+		<button id="pauseButton">Pause</button>
+	</div>
     <div class="speed">
       <div class="speed-bar">1×</div>
     </div>
   </div>
-
 <script  src="./script.js">
   //Your code goes here
 </script>
