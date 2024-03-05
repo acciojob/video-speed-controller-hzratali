@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function() {
       playerButton.textContent = '►';
     } else {
       video.play();
-      playerButton.textContent = '❚ ❚';
+      playerButton.textContent = '❚❚';
     }
     isPlaying = !isPlaying;
   }
