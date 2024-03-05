@@ -48,4 +48,7 @@ document.addEventListener("DOMContentLoaded", function() {
   rewindButton.addEventListener('click', rewind);
   forwardButton.addEventListener('click', forward);
   video.addEventListener('timeupdate', updateProgressBar);
+
+  // Set initial progress bar
+  video.addEventListener('loadedmetadata', updateProgressBar);
 });
