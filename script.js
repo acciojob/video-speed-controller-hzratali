@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
   const video = document.querySelector('.flex');
-	video.duaration = "60.08";
   const playerButton = document.querySelector('.toggle');
   const volumeRange = document.querySelector('[name="volume"]');
   const playbackSpeedRange = document.querySelector('[name="playbackRate"]');
