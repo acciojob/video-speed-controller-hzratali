@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function() {
   const playerButton = document.querySelector('.toggle');
   const volumeRange = document.querySelector('[name="volume"]');
   const playbackSpeedRange = document.querySelector('[name="playbackRate"]');
-  const rewindButton = document.querySelector('.skip-back');
+  const rewindButton = document.querySelector('.rewind');
   const forwardButton = document.querySelector('.skip-forward');
   const progressBar = document.querySelector('.progress__filled');
 
